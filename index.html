@@ -6,7 +6,7 @@
     <title>もしも私がアイドルになったら | アイドルデビュープロジェクト</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Zen Maru Gothic (かわいらしい丸ゴシック) -->
+    <!-- Google Fonts: Zen Maru Gothic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -18,15 +18,22 @@
                 extend: {
                     colors: {
                         theme: {
-                            light: '#fff0f5', // 薄いピンク背景
-                            main: '#ff6699',  // メインピンク
-                            dark: '#ff3377',  // 濃いピンク
-                            text: '#4a4a4a',  // テキスト色
-                            line: '#06C755',  // LINEグリーン
+                            bg: '#fff5f8',     // 全体のベース(極薄ピンク)
+                            light: '#ffebf0',  // 薄いピンク
+                            main: '#ff99b3',   // メインピンク(ゆめかわ)
+                            dark: '#ff6688',   // 濃いピンク
+                            accent: '#88e0d0', // パステルミント(バッジ用)
+                            text: '#6a4a55',   // テキスト色(赤茶系で柔らかく)
+                            line: '#06C755',   // LINEグリーン
                         }
                     },
                     fontFamily: {
                         sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'girly': '0 10px 25px -5px rgba(255, 153, 179, 0.4)',
+                        'girly-sm': '0 4px 10px rgba(255, 153, 179, 0.2)',
+                        'badge': '0 4px 8px rgba(136, 224, 208, 0.4)',
                     }
                 }
             }
@@ -35,235 +42,423 @@
     
     <style>
         body {
-            background-color: #f3f4f6;
-            color: #4a4a4a;
+            background-color: #fce4ec; /* 外側の背景もピンクに */
+            color: #6a4a55;
+            overflow-x: hidden;
         }
-        /* スマホビューを中央に表示するためのラッパー */
+        /* スマホビューラッパー */
         .lp-wrapper {
             max-width: 480px;
             margin: 0 auto;
-            background-color: #ffffff;
+            background-color: #fff5f8;
             min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 30px rgba(255, 102, 136, 0.15);
             position: relative;
-            padding-bottom: 100px; /* 固定ボタンの余白 */
+            padding-bottom: 110px;
+            overflow: hidden;
         }
-        .text-shadow-pink {
-            text-shadow: 0px 2px 4px rgba(255, 102, 153, 0.3);
+
+        /* --- LARME風のテキストエフェクト --- */
+        .text-larme-title {
+            color: #ff6688;
+            text-shadow: 
+                -3px -3px 0 #fff,  
+                 3px -3px 0 #fff,
+                -3px  3px 0 #fff,
+                 3px  3px 0 #fff,
+                -4px  0   0 #fff,
+                 4px  0   0 #fff,
+                 0   -4px 0 #fff,
+                 0    4px 0 #fff,
+                 0 8px 15px rgba(255, 102, 136, 0.4);
+            letter-spacing: 0.05em;
         }
-        .text-shadow-strong {
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        .text-larme-sub {
+            color: #fff;
+            text-shadow: 
+                -2px -2px 0 #ff99b3,  
+                 2px -2px 0 #ff99b3,
+                -2px  2px 0 #ff99b3,
+                 2px  2px 0 #ff99b3,
+                 0 4px 8px rgba(255, 153, 179, 0.6);
         }
-        /* detailsタグの矢印アニメーション用 */
+
+        /* --- アニメーション --- */
+        @keyframes float-magazine {
+            0% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(-2deg); }
+        }
+        .animate-float {
+            animation: float-magazine 5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; filter: brightness(1.2); }
+        }
+        .animate-glow {
+            animation: pulse-glow 2.5s infinite;
+        }
+
+        /* 光沢が走るエフェクト */
+        @keyframes shine {
+            10% { opacity: 1; top: -30%; left: -30%; transition-property: left, top; transition-duration: 0.7s, 0.7s; transition-timing-function: ease; }
+            100% { opacity: 0; top: -30%; left: -30%; transition-property: left, top; }
+        }
+        .btn-shine {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-shine::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 20%;
+            height: 200%;
+            opacity: 0;
+            transform: rotate(30deg);
+            background: rgba(255, 255, 255, 0.5);
+            background: linear-gradient(to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0.0) 100%);
+            animation: shine 4s infinite;
+        }
+
+        /* 降ってくるハートとキラキラのアニメーション */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+        .particle {
+            position: absolute;
+            z-index: 15;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        /* セクション見出しのリボン風装飾 */
+        .section-title-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        .section-title-wrapper::before,
+        .section-title-wrapper::after {
+            content: '♥';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff99b3;
+            font-size: 1.2rem;
+            animation: pulse-glow 2s infinite;
+        }
+        .section-title-wrapper::before { left: -30px; }
+        .section-title-wrapper::after { right: -30px; }
+
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
     </style>
 </head>
 <body class="antialiased">
 
-<div class="lp-wrapper overflow-hidden">
+<div class="lp-wrapper">
+
+    <!-- 背景の降るハート/キラキラ (JSなし、CSSのみで数個配置) -->
+    <div class="particle text-pink-300 text-2xl" style="left: 10%; animation-duration: 8s; animation-delay: 0s;">✦</div>
+    <div class="particle text-pink-200 text-xl" style="left: 30%; animation-duration: 12s; animation-delay: 2s;">♥</div>
+    <div class="particle text-white text-2xl drop-shadow-md" style="left: 50%; animation-duration: 9s; animation-delay: 4s;">✨</div>
+    <div class="particle text-pink-300 text-lg" style="left: 70%; animation-duration: 11s; animation-delay: 1s;">♥</div>
+    <div class="particle text-white text-3xl drop-shadow-md" style="left: 85%; animation-duration: 10s; animation-delay: 5s;">✦</div>
 
     <!-- ================= HERO SECTION ================= -->
-    <header class="relative w-full overflow-hidden bg-pink-100 min-h-[100vh]">
-        <!-- 背景のカーテン画像 (bg-curtain.jpg) -->
-        <img src="bg-curtain.jpg" alt="背景" class="absolute inset-0 w-full h-full object-cover z-0" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffb6c1%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3Ebg-curtain.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+    <header class="relative w-full overflow-hidden bg-pink-100 min-h-[100vh] flex flex-col items-center pb-24">
+        <!-- 背景画像 (bg-curtain.jpg) -->
+        <img src="bg-curtain.jpg" alt="背景" class="absolute inset-0 w-full h-full object-cover z-0 opacity-90 mix-blend-multiply" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffccd5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3Ebg-curtain.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
         
-        <!-- 全員必ず1P掲載!! のバッジ（右上） -->
-        <div class="absolute top-4 right-2 z-20 bg-[#d9f2f2] rounded-full w-[80px] h-[80px] flex items-center justify-center transform rotate-12 shadow-md text-teal-600 font-black flex-col leading-none border-2 border-white">
-            <span class="text-[10px]">全員必ず</span>
-            <span class="text-xs"><span class="text-xl">1P</span>掲載!!</span>
+        <!-- 背景の輝きオーバーレイ -->
+        <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-pink-100/80 z-0"></div>
+
+        <!-- 全員必ず1P掲載!! のバッジ（右上）LARME風 -->
+        <div class="absolute top-6 right-3 z-20 bg-white rounded-full w-[85px] h-[85px] flex items-center justify-center transform rotate-12 shadow-girly text-theme-dark font-black flex-col leading-none border-[3px] border-theme-main border-dashed">
+            <span class="text-[10px] text-theme-main">全員必ず</span>
+            <span class="text-xs mt-0.5"><span class="text-[22px] text-theme-dark">1P</span>掲載!!</span>
         </div>
 
-        <div class="relative z-10 flex flex-col items-center pt-16 pb-12 px-4 h-full justify-center">
-            <!-- 上部テキスト -->
-            <h1 class="text-white font-bold text-[26px] text-center leading-relaxed mb-6 text-shadow-strong">
-                自撮り一枚で雑誌の<br>アイドルデビュー？
-            </h1>
+        <div class="relative z-10 flex flex-col items-center pt-16 px-4 w-full h-full flex-grow">
+            
+            <!-- 上部テキスト（LARME風フチ文字） -->
+            <div class="mb-8 relative text-center w-full z-20">
+                <span class="absolute -top-4 left-4 text-3xl animate-pulse text-white drop-shadow-md">✨</span>
+                
+                <h1 class="font-black leading-tight flex flex-col items-center justify-center gap-1">
+                    <span class="text-larme-sub text-[22px] tracking-widest transform -rotate-2">
+                        自撮り一枚で雑誌の
+                    </span>
+                    <span class="text-larme-title text-[34px] tracking-wide transform rotate-1 mt-1">
+                        アイドルデビュー？
+                    </span>
+                </h1>
+            </div>
 
-            <!-- 雑誌画像 (magazine-cover.jpg) -->
-            <div class="w-[75%] max-w-[320px] relative mb-8 shadow-2xl">
-                <!-- 雑誌のハイライト効果(光沢) -->
-                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none z-10 mix-blend-overlay"></div>
-                <img src="magazine-cover.jpg" alt="もしも私がアイドルになったら 雑誌表紙" class="w-full h-auto object-cover border-[1px] border-gray-200" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22400%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f3f4f6%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3Emagazine-cover.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+            <!-- 雑誌画像 (magazine-cover.jpg) + ゆめかわアニメーション -->
+            <div class="w-[70%] max-w-[280px] relative mb-10 animate-float z-20">
+                <!-- 後ろのキラキラ後光 -->
+                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/50 blur-2xl rounded-full z-0"></div>
+                
+                <div class="relative z-10 p-2 bg-white/60 rounded-xl backdrop-blur-sm border border-white shadow-girly">
+                    <img src="magazine-cover.jpg" alt="雑誌表紙" class="w-full h-auto object-cover rounded-lg shadow-inner" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22400%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6688%22%20text-anchor%3D%22middle%22%3Emagazine-cover.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                </div>
+                
+                <!-- 飾りのリボン（疑似） -->
+                <div class="absolute -bottom-4 -right-4 text-4xl animate-bounce drop-shadow-md" style="animation-duration: 2s;">🎀</div>
             </div>
 
             <!-- 下部テキスト -->
-            <p class="text-white font-bold text-lg mb-6 text-shadow-strong">
-                あなたのアイドルとしての物語はどれ？
-            </p>
-
-            <!-- カテゴリバッジ 5つ -->
-            <div class="flex flex-wrap justify-center gap-2 max-w-[360px]">
-                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
-                    <span class="text-[11px] font-black leading-tight tracking-tighter">IDOL</span>
-                    <span class="text-[8px] font-bold">アイドル</span>
-                </div>
-                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
-                    <span class="text-[10px] font-black leading-tight tracking-tighter">MODEL</span>
-                    <span class="text-[8px] font-bold">モデル</span>
-                </div>
-                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
-                    <span class="text-[7px] font-black leading-tight tracking-tighter">INFLUENCER</span>
-                    <span class="text-[6px] font-bold transform scale-90">インフルエンサー</span>
-                </div>
-                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
-                    <span class="text-[8px] font-black leading-tight tracking-tighter text-center">COVER<br>GIRL</span>
-                    <span class="text-[6px] font-bold transform scale-90">表紙モデル</span>
-                </div>
-                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
-                    <span class="text-[9px] font-black leading-tight tracking-tighter">CREATOR</span>
-                    <span class="text-[7px] font-bold transform scale-90">クリエイター</span>
+            <div class="relative z-20 mb-6 w-full text-center">
+                <div class="bg-white/80 backdrop-blur-md rounded-full py-2 px-6 inline-block shadow-girly-sm border-2 border-white">
+                    <p class="font-bold text-[16px] text-theme-dark tracking-wide">
+                        あなたのアイドルとしての物語はどれ？
+                    </p>
                 </div>
             </div>
+
+            <!-- カテゴリバッジ 5つ (パステルミントでガーリーに) -->
+            <div class="flex flex-wrap justify-center gap-3 max-w-[360px] relative z-20">
+                <!-- IDOL -->
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[13px] font-black leading-tight tracking-tighter drop-shadow-md">IDOL</span>
+                    <span class="text-[9px] font-bold drop-shadow-md mt-0.5">アイドル</span>
+                </div>
+                <!-- MODEL -->
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[11px] font-black leading-tight tracking-tighter drop-shadow-md">MODEL</span>
+                    <span class="text-[9px] font-bold drop-shadow-md mt-0.5">モデル</span>
+                </div>
+                <!-- INFLUENCER -->
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[8px] font-black leading-tight tracking-tighter drop-shadow-md">INFLUENCER</span>
+                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md">インフルエンサー</span>
+                </div>
+                <!-- COVER GIRL -->
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[9px] font-black leading-tight tracking-tighter text-center drop-shadow-md">COVER<br>GIRL</span>
+                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md">表紙モデル</span>
+                </div>
+                <!-- CREATOR -->
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[10px] font-black leading-tight tracking-tighter drop-shadow-md">CREATOR</span>
+                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md mt-0.5">クリエイター</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SVG Bottom Wave (丸みを帯びた雲のような区切り) -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 transform translate-y-[1px]">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[60px]">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.22,192.36,102.39Z" fill="#fff5f8"></path>
+            </svg>
         </div>
     </header>
 
     <!-- ================= CONTENTS SECTION ================= -->
-    <section class="py-12 px-6 bg-white relative">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-black text-theme-main tracking-widest uppercase">Contents</h2>
-            <p class="mt-2 text-sm font-bold text-gray-500">あなたが主役の誌面体験。</p>
+    <section class="py-14 px-6 bg-theme-bg relative z-20">
+        <div class="text-center mb-10">
+            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Contents</h2>
+            <p class="mt-2 text-sm font-bold text-theme-main">あなたが主役の誌面体験。</p>
         </div>
 
-        <div class="space-y-8">
+        <div class="space-y-10">
             <!-- Content 1 -->
-            <div class="bg-theme-light rounded-3xl p-5 shadow-sm border-2 border-pink-100 relative">
-                <div class="absolute -top-4 -left-2 bg-theme-main text-white text-xs font-bold px-4 py-1 rounded-full transform rotate-[-5deg]">
-                    自撮り1枚でもOK!
+            <div class="bg-white rounded-[32px] p-6 shadow-girly-sm border-4 border-theme-light relative">
+                <div class="absolute -top-5 -left-2 bg-theme-main text-white text-xs font-bold px-5 py-2 rounded-full transform rotate-[-5deg] shadow-md border-2 border-white">
+                    自撮り1枚でもOK! 📸
                 </div>
-                <div class="flex flex-col gap-4">
-                    <img src="content-1.jpg" alt="プロフィールページ" class="w-full h-48 object-cover rounded-2xl bg-white" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3Econtent-1.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <div class="flex flex-col gap-5 mt-2">
+                    <div class="rounded-2xl overflow-hidden border-2 border-pink-50 p-1 bg-white shadow-inner">
+                        <img src="content-1.jpg" alt="プロフィールページ" class="w-full h-48 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff99b3%22%20text-anchor%3D%22middle%22%3Econtent-1.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
                     <div>
-                        <h3 class="text-xl font-bold text-theme-dark mb-2">プロフィールページ</h3>
-                        <p class="text-sm leading-relaxed">編集部が魅力を引き出して完全プロデュース！あなたのページを制作し、必ず雑誌に掲載されます。</p>
+                        <h3 class="text-xl font-bold text-theme-dark mb-2 flex items-center">
+                            <span class="text-theme-main mr-1">✦</span> プロフィールページ
+                        </h3>
+                        <p class="text-sm leading-relaxed text-gray-600">編集部が魅力を引き出して完全プロデュース！あなたのページを制作し、必ず雑誌に掲載されます♡</p>
                     </div>
                 </div>
             </div>
 
             <!-- Content 2 -->
-            <div class="bg-theme-light rounded-3xl p-5 shadow-sm border-2 border-pink-100 relative">
-                <div class="absolute -top-4 -right-2 bg-theme-main text-white text-xs font-bold px-4 py-1 rounded-full transform rotate-[5deg]">
-                    あなたが主役！
+            <div class="bg-white rounded-[32px] p-6 shadow-girly-sm border-4 border-theme-light relative">
+                <div class="absolute -top-5 -right-2 bg-theme-accent text-white text-xs font-bold px-5 py-2 rounded-full transform rotate-[5deg] shadow-md border-2 border-white">
+                    あなたが主役！ 👑
                 </div>
-                <div class="flex flex-col gap-4">
-                    <img src="content-2.jpg" alt="好きな企画を選んでエントリー" class="w-full h-48 object-cover rounded-2xl bg-white" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23eee%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3Econtent-2.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <div class="flex flex-col gap-5 mt-2">
+                    <div class="rounded-2xl overflow-hidden border-2 border-teal-50 p-1 bg-white shadow-inner">
+                        <img src="content-2.jpg" alt="好きな企画を選んでエントリー" class="w-full h-48 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23e6f7f5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%2388e0d0%22%20text-anchor%3D%22middle%22%3Econtent-2.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    </div>
                     <div>
-                        <h3 class="text-xl font-bold text-theme-dark mb-2">好きな企画を選んでエントリー</h3>
-                        <p class="text-sm leading-relaxed">もしも私がアイドルだったら...。コンセプトに合わせた企画に参加して、あなただけの新しい物語をスタート。</p>
+                        <h3 class="text-xl font-bold text-theme-dark mb-2 flex items-center">
+                            <span class="text-theme-accent mr-1">✦</span> 好きな企画でエントリー
+                        </h3>
+                        <p class="text-sm leading-relaxed text-gray-600">もしも私がアイドルだったら...。コンセプトに合わせた企画に参加して、あなただけの新しい物語をスタート。</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SVG Divider -->
+    <div class="w-full overflow-hidden leading-none bg-theme-light">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[40px] transform rotate-180">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.22,192.36,102.39Z" fill="#fff5f8"></path>
+        </svg>
+    </div>
+
     <!-- ================= BENEFITS SECTION ================= -->
-    <section class="py-12 px-6 bg-pink-50">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-black text-theme-main tracking-widest uppercase">Benefits</h2>
-            <p class="mt-2 text-sm font-bold text-gray-500">デビューから活躍まで<br>あなたの夢を叶える特典</p>
+    <section class="py-14 px-5 bg-theme-light relative z-20">
+        <div class="text-center mb-10">
+            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Benefits</h2>
+            <p class="mt-2 text-sm font-bold text-theme-main">デビューから活躍まで<br>あなたの夢を叶える特典✨</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
             <!-- Benefit 1 -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col">
-                <img src="benefit-1.jpg" alt="雑誌1ページ掲載" class="w-full h-32 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f9d5e5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6699%22%20text-anchor%3D%22middle%22%3Ebenefit-1.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <div class="p-3 text-center flex-1 flex flex-col justify-center">
-                    <span class="text-[10px] text-theme-main font-bold border border-theme-main rounded-full px-2 py-0.5 inline-block w-max mx-auto mb-1">全員</span>
-                    <h3 class="text-sm font-bold leading-tight">雑誌1ページ掲載</h3>
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col border-[3px] border-white hover:-translate-y-1 transition-transform">
+                <div class="p-1">
+                    <img src="benefit-1.jpg" alt="雑誌1ページ掲載" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
+                </div>
+                <div class="p-3 text-center flex-1 flex flex-col justify-center items-center bg-white">
+                    <span class="text-[10px] bg-theme-main text-white font-bold rounded-full px-3 py-0.5 inline-block w-max mb-1">全員</span>
+                    <h3 class="text-sm font-bold text-theme-dark leading-tight">雑誌1ページ掲載</h3>
                 </div>
             </div>
             
             <!-- Benefit 2 -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col relative border-2 border-yellow-300">
-                <div class="absolute top-0 right-0 bg-yellow-400 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">
-                    👑 グランプリ
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col relative border-[3px] border-[#ffd700] hover:-translate-y-1 transition-transform">
+                <div class="absolute -top-1 -right-1 bg-gradient-to-r from-[#ffd700] to-[#ffaa00] text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl rounded-tr-xl z-10 shadow-sm flex items-center gap-1">
+                    <span>👑</span> グランプリ
                 </div>
-                <img src="benefit-2.jpg" alt="表紙&巻頭" class="w-full h-32 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f9d5e5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6699%22%20text-anchor%3D%22middle%22%3Ebenefit-2.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <div class="p-3 text-center flex-1 flex flex-col justify-center">
-                    <h3 class="text-sm font-bold leading-tight">表紙 & 巻頭特集</h3>
+                <div class="p-1">
+                    <img src="benefit-2.jpg" alt="表紙&巻頭" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
+                </div>
+                <div class="p-3 text-center flex-1 flex flex-col justify-center bg-white">
+                    <h3 class="text-sm font-bold text-theme-dark leading-tight">表紙 & 巻頭特集</h3>
                 </div>
             </div>
 
             <!-- Benefit 3 -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col relative border-2 border-yellow-300">
-                <div class="absolute top-0 right-0 bg-yellow-400 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg z-10">
-                    👑 グランプリ
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col relative border-[3px] border-[#ffd700] hover:-translate-y-1 transition-transform">
+                <div class="absolute -top-1 -right-1 bg-gradient-to-r from-[#ffd700] to-[#ffaa00] text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl rounded-tr-xl z-10 shadow-sm flex items-center gap-1">
+                    <span>👑</span> グランプリ
                 </div>
-                <img src="benefit-3.jpg" alt="レギュラーモデル" class="w-full h-32 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f9d5e5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6699%22%20text-anchor%3D%22middle%22%3Ebenefit-3.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <div class="p-3 text-center flex-1 flex flex-col justify-center">
-                    <h3 class="text-sm font-bold leading-tight">レギュラーモデル<br>就任</h3>
+                <div class="p-1">
+                    <img src="benefit-3.jpg" alt="レギュラーモデル" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
+                </div>
+                <div class="p-3 text-center flex-1 flex flex-col justify-center bg-white">
+                    <h3 class="text-sm font-bold text-theme-dark leading-tight">レギュラーモデル<br>就任</h3>
                 </div>
             </div>
 
             <!-- Benefit 4 -->
-            <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col">
-                <img src="benefit-4.jpg" alt="アパレルの公式モデル" class="w-full h-32 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f9d5e5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6699%22%20text-anchor%3D%22middle%22%3Ebenefit-4.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                <div class="p-3 text-center flex-1 flex flex-col justify-center">
-                    <span class="text-[10px] text-theme-main font-bold border border-theme-main rounded-full px-2 py-0.5 inline-block w-max mx-auto mb-1">特別賞</span>
-                    <h3 class="text-sm font-bold leading-tight">Off-Melty<br>公式モデル就任</h3>
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col border-[3px] border-white hover:-translate-y-1 transition-transform">
+                <div class="p-1">
+                    <img src="benefit-4.jpg" alt="アパレルの公式モデル" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
+                </div>
+                <div class="p-3 text-center flex-1 flex flex-col justify-center items-center bg-white">
+                    <span class="text-[10px] bg-theme-accent text-white font-bold rounded-full px-3 py-0.5 inline-block w-max mb-1">特別賞</span>
+                    <h3 class="text-[13px] font-bold text-theme-dark leading-tight">Off-Melty<br>公式モデル就任</h3>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- SVG Divider -->
+    <div class="w-full overflow-hidden leading-none bg-theme-bg">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[40px] transform rotate-180">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.22,192.36,102.39Z" fill="#ffebf0"></path>
+        </svg>
+    </div>
+
     <!-- ================= STEP SECTION ================= -->
-    <section class="py-12 px-6 bg-white">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-black text-theme-main tracking-widest uppercase">Step</h2>
-            <p class="mt-2 text-sm font-bold text-gray-500">エントリーから掲載まで、<br>すべてLINEで完結！</p>
+    <section class="py-14 px-6 bg-theme-bg">
+        <div class="text-center mb-12">
+            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Step</h2>
+            <p class="mt-2 text-sm font-bold text-theme-main">エントリーから掲載まで、<br>すべてLINEで完結♡</p>
         </div>
 
-        <div class="relative border-l-4 border-pink-200 ml-4 space-y-8 pb-4">
+        <div class="relative border-l-[3px] border-dashed border-theme-main ml-6 space-y-10 pb-4">
             <!-- Step 1 -->
-            <div class="relative pl-6">
-                <div class="absolute -left-[14px] top-0 bg-theme-main w-6 h-6 rounded-full border-4 border-white flex items-center justify-center"></div>
-                <div class="text-theme-main font-black text-xl mb-1">01</div>
-                <h3 class="font-bold text-lg mb-1">LINEからエントリー</h3>
-                <p class="text-sm text-gray-600">エントリーボタンから公式アカウントをお友達追加。</p>
+            <div class="relative pl-8">
+                <div class="absolute -left-[20px] top-0 bg-white w-9 h-9 rounded-full border-[3px] border-theme-main flex items-center justify-center shadow-md">
+                    <span class="text-theme-main font-black text-sm">01</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-pink-50 relative">
+                    <div class="absolute w-3 h-3 bg-white border-t border-l border-pink-50 transform -rotate-45 -left-[7px] top-3"></div>
+                    <h3 class="font-bold text-lg text-theme-dark mb-1">LINEからエントリー</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">エントリーボタンから公式アカウントをお友達追加。</p>
+                </div>
             </div>
             
             <!-- Step 2 -->
-            <div class="relative pl-6">
-                <div class="absolute -left-[14px] top-0 bg-theme-main w-6 h-6 rounded-full border-4 border-white flex items-center justify-center"></div>
-                <div class="text-theme-main font-black text-xl mb-1">02</div>
-                <h3 class="font-bold text-lg mb-1">参加する企画を選択</h3>
-                <p class="text-sm text-gray-600">参加したい雑誌の企画を選択して送信します。</p>
+            <div class="relative pl-8">
+                <div class="absolute -left-[20px] top-0 bg-white w-9 h-9 rounded-full border-[3px] border-theme-main flex items-center justify-center shadow-md">
+                    <span class="text-theme-main font-black text-sm">02</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-pink-50 relative">
+                    <div class="absolute w-3 h-3 bg-white border-t border-l border-pink-50 transform -rotate-45 -left-[7px] top-3"></div>
+                    <h3 class="font-bold text-lg text-theme-dark mb-1">参加する企画を選択</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">参加したい雑誌の企画を選択して送信します。</p>
+                </div>
             </div>
 
             <!-- Step 3 -->
-            <div class="relative pl-6">
-                <div class="absolute -left-[14px] top-0 bg-theme-main w-6 h-6 rounded-full border-4 border-white flex items-center justify-center"></div>
-                <div class="text-theme-main font-black text-xl mb-1">03</div>
-                <h3 class="font-bold text-lg mb-1">企画に回答して写真送信</h3>
-                <p class="text-sm text-gray-600">自動で届く質問に答えて、名前と写真を送るだけでエントリー完了！</p>
+            <div class="relative pl-8">
+                <div class="absolute -left-[20px] top-0 bg-white w-9 h-9 rounded-full border-[3px] border-theme-main flex items-center justify-center shadow-md">
+                    <span class="text-theme-main font-black text-sm">03</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-pink-50 relative">
+                    <div class="absolute w-3 h-3 bg-white border-t border-l border-pink-50 transform -rotate-45 -left-[7px] top-3"></div>
+                    <h3 class="font-bold text-lg text-theme-dark mb-1">企画に回答して写真送信</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">自動で届く質問に答えて、名前と写真を送るだけで完了！</p>
+                </div>
             </div>
 
             <!-- Step 4 -->
-            <div class="relative pl-6">
-                <div class="absolute -left-[14px] top-0 bg-theme-main w-6 h-6 rounded-full border-4 border-white flex items-center justify-center"></div>
-                <div class="text-theme-main font-black text-xl mb-1">04</div>
-                <h3 class="font-bold text-lg mb-1">ランキング公開・投票</h3>
-                <p class="text-sm text-gray-600">公式サイトにあなたのページが公開。友達やフォロワーに応援してもらおう！</p>
+            <div class="relative pl-8">
+                <div class="absolute -left-[20px] top-0 bg-white w-9 h-9 rounded-full border-[3px] border-theme-main flex items-center justify-center shadow-md">
+                    <span class="text-theme-main font-black text-sm">04</span>
+                </div>
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-pink-50 relative">
+                    <div class="absolute w-3 h-3 bg-white border-t border-l border-pink-50 transform -rotate-45 -left-[7px] top-3"></div>
+                    <h3 class="font-bold text-lg text-theme-dark mb-1">ランキング公開・投票</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">公式サイトにページが公開。フォロワーに応援してもらおう！</p>
+                </div>
             </div>
 
             <!-- Step 5 -->
-            <div class="relative pl-6">
-                <div class="absolute -left-[14px] top-0 bg-theme-dark w-8 h-8 rounded-full border-4 border-white flex items-center justify-center shadow-md -translate-x-1">
-                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+            <div class="relative pl-8">
+                <div class="absolute -left-[24px] top-[-4px] bg-theme-dark w-11 h-11 rounded-full border-[3px] border-white flex items-center justify-center shadow-girly animate-glow">
+                    <span class="text-white font-black text-lg">05</span>
                 </div>
-                <div class="text-theme-dark font-black text-2xl mb-1">05</div>
-                <h3 class="font-bold text-xl text-theme-dark mb-1">雑誌発売!!</h3>
-                <p class="text-sm text-gray-600">あなたの新しい物語のスタートです。</p>
+                <div class="bg-gradient-to-r from-theme-main to-theme-dark p-5 rounded-2xl shadow-girly relative text-white">
+                    <div class="absolute w-4 h-4 bg-theme-main transform -rotate-45 -left-[6px] top-4"></div>
+                    <h3 class="font-black text-xl mb-1 drop-shadow-md">雑誌発売!! ✨</h3>
+                    <p class="text-xs text-white/90 leading-relaxed font-bold">あなたの新しい物語のスタートです。</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ================= ENTRY BUTTON SECTION (IN-PAGE) ================= -->
-    <section class="py-10 px-6 bg-pink-50 text-center">
-        <h2 class="text-2xl font-black mb-6">さあ、あなたの<br>アイドルデビューを始めよう</h2>
-        <a href="#" class="inline-flex items-center justify-center w-full max-w-[320px] bg-theme-line text-white font-bold text-lg py-4 rounded-full shadow-lg shadow-green-200 hover:scale-105 transition-transform duration-300">
+    <!-- ================= IN-PAGE ENTRY BUTTON ================= -->
+    <section class="py-12 px-6 bg-white text-center rounded-t-[40px] shadow-[0_-10px_20px_rgba(255,153,179,0.1)] relative z-30">
+        <h2 class="text-2xl font-black text-theme-dark mb-6 leading-relaxed">
+            さあ、あなたの<br>
+            <span class="text-larme-title text-[28px]">アイドルデビュー</span>を<br>
+            始めよう 💖
+        </h2>
+        <a href="#" class="btn-shine inline-flex items-center justify-center w-full max-w-[320px] bg-[#06C755] text-white font-bold text-lg py-4 rounded-full shadow-[0_8px_20px_rgba(6,199,85,0.4)] hover:scale-105 transition-transform duration-300 border-2 border-[#06C755]">
             <!-- LINE Icon SVG -->
-            <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="currentColor">
+            <svg class="w-6 h-6 mr-2 drop-shadow-md" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.304z"/>
             </svg>
             LINEで毎日エントリー
@@ -271,71 +466,60 @@
     </section>
 
     <!-- ================= Q&A SECTION ================= -->
-    <section class="py-12 px-6 bg-white">
+    <section class="py-12 px-6 bg-white relative z-20">
         <div class="text-center mb-8">
-            <h2 class="text-3xl font-black text-theme-main tracking-widest uppercase">Q&A</h2>
-            <p class="mt-2 text-sm font-bold text-gray-500">よくある質問</p>
+            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Q&A</h2>
+            <p class="mt-2 text-sm font-bold text-theme-main">よくある質問</p>
         </div>
 
         <div class="space-y-4">
             <!-- Q1 -->
-            <details class="bg-theme-light rounded-xl shadow-sm border border-pink-100 p-4 group cursor-pointer">
-                <summary class="font-bold flex justify-between items-center text-theme-dark">
-                    <span>Q. エントリーにお金はかかりますか？</span>
-                    <span class="transition-transform group-open:rotate-180 text-xl">▼</span>
+            <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
+                <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
+                    <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>エントリーにお金はかかりますか？</span>
+                    <span class="transition-transform group-open:rotate-180 text-theme-main font-black">＋</span>
                 </summary>
-                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-3">
+                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-4 leading-relaxed">
                     A. 参加費や登録料などは一切かかりません。無料でエントリー可能です。（※通信費はご負担ください）
                 </p>
             </details>
             <!-- Q2 -->
-            <details class="bg-theme-light rounded-xl shadow-sm border border-pink-100 p-4 group cursor-pointer">
-                <summary class="font-bold flex justify-between items-center text-theme-dark">
-                    <span>Q. どんな人が応募できますか？</span>
-                    <span class="transition-transform group-open:rotate-180 text-xl">▼</span>
+            <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
+                <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
+                    <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>どんな人が応募できますか？</span>
+                    <span class="transition-transform group-open:rotate-180 text-theme-main font-black">＋</span>
                 </summary>
-                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-3">
+                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-4 leading-relaxed">
                     A. アイドルやモデルに興味がある方なら、経験問わずどなたでもご応募いただけます。
                 </p>
             </details>
             <!-- Q3 -->
-            <details class="bg-theme-light rounded-xl shadow-sm border border-pink-100 p-4 group cursor-pointer">
-                <summary class="font-bold flex justify-between items-center text-theme-dark">
-                    <span>Q. 地方在住でどうやって出演できるの？</span>
-                    <span class="transition-transform group-open:rotate-180 text-xl">▼</span>
+            <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
+                <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
+                    <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>地方在住でどうやって出演できるの？</span>
+                    <span class="transition-transform group-open:rotate-180 text-theme-main font-black">＋</span>
                 </summary>
-                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-3">
+                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-4 leading-relaxed">
                     A. 基本的にオンライン（LINE）でのやり取りと、ご自身で撮影いただいた写真データで誌面を作成するため、全国どこからでもご参加可能です。
-                </p>
-            </details>
-            <!-- Q4 -->
-            <details class="bg-theme-light rounded-xl shadow-sm border border-pink-100 p-4 group cursor-pointer">
-                <summary class="font-bold flex justify-between items-center text-theme-dark">
-                    <span>Q. グランプリはどうやって決まるの？</span>
-                    <span class="transition-transform group-open:rotate-180 text-xl">▼</span>
-                </summary>
-                <p class="mt-4 text-sm text-theme-text border-t border-pink-200 pt-3">
-                    A. 公開されたプロフィールページへの一般投票ランキングや、編集部・スポンサーによる審査を総合して決定いたします。
                 </p>
             </details>
         </div>
     </section>
 
-    <!-- ================= FOOTER / PRIVACY ================= -->
-    <footer class="bg-gray-100 py-10 px-6 text-center">
-        <h3 class="text-sm font-bold mb-4">個人情報の取り扱いについて</h3>
-        <p class="text-[10px] text-gray-500 text-left leading-relaxed mb-6">
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-[#f8e6eb] py-12 px-6 text-center">
+        <h3 class="text-sm font-bold mb-4 text-theme-dark">個人情報の取り扱いについて</h3>
+        <p class="text-[10px] text-gray-500 text-left leading-relaxed mb-8 bg-white/50 p-4 rounded-xl">
             ご提供いただいた住所、電話番号、氏名、性別、年齢等の個人情報は、「もしも私がアイドルになったら」事務局が管理します。お客様の個人情報は、本キャンペーンにおけるご連絡の目的で利用し、それ以外の目的では使用致しません。また、お客様の同意なしに業務委託先以外の第三者に開示・提供することはありません。（法令等により開示を求められた場合を除きます）
         </p>
-        <p class="text-xs text-gray-400">&copy; IDOL MODEL CREATOR All Rights Reserved.</p>
+        <p class="text-xs text-theme-dark font-bold">&copy; IDOL MODEL CREATOR All Rights Reserved.</p>
     </footer>
 
     <!-- ================= FLOATING ACTION BUTTON (固定LINEボタン) ================= -->
     <div class="fixed bottom-0 left-0 w-full z-50 p-4 pointer-events-none">
-        <div class="max-w-md mx-auto pointer-events-auto">
-            <a href="#" class="flex items-center justify-center w-full bg-theme-line text-white font-black text-lg py-4 rounded-full shadow-lg border-2 border-white animate-bounce-slight hover:opacity-90 transition-opacity">
-                <!-- LINE Icon SVG -->
-                <svg class="w-7 h-7 mr-2" viewBox="0 0 24 24" fill="currentColor">
+        <div class="max-w-[480px] mx-auto pointer-events-auto flex justify-center">
+            <a href="#" class="btn-shine flex items-center justify-center w-[90%] max-w-[340px] bg-[#06C755] text-white font-black text-lg py-4 rounded-full shadow-[0_10px_25px_rgba(6,199,85,0.4)] border-2 border-white hover:scale-105 transition-transform">
+                <svg class="w-7 h-7 mr-2 drop-shadow-md" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.304z"/>
                 </svg>
                 LINEで今すぐエントリー
@@ -344,17 +528,6 @@
     </div>
 
 </div>
-
-<!-- CSS for slight bounce animation on fixed button -->
-<style>
-    @keyframes bounce-slight {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-5px); }
-    }
-    .animate-bounce-slight {
-        animation: bounce-slight 2s infinite ease-in-out;
-    }
-</style>
 
 </body>
 </html>

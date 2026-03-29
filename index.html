@@ -51,6 +51,9 @@
         .text-shadow-pink {
             text-shadow: 0px 2px 4px rgba(255, 102, 153, 0.3);
         }
+        .text-shadow-strong {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
         /* detailsタグの矢印アニメーション用 */
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
@@ -61,22 +64,56 @@
 <div class="lp-wrapper overflow-hidden">
 
     <!-- ================= HERO SECTION ================= -->
-    <header class="relative bg-theme-light">
-        <!-- メイン画像 (hero-image.jpg) -->
-        <div class="w-full aspect-[3/4] bg-pink-100 relative">
-            <img src="hero-image.jpg" alt="アイドルデビュー" class="w-full h-full object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%20800%201000%22%20preserveAspectRatio%3D%22xMidYMid%20slice%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6699%22%20dy%3D%22.3em%22%20font-size%3D%2224%22%20text-anchor%3D%22middle%22%3Ehero-image.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-            
-            <!-- 上部テキストオーバーレイ -->
-            <div class="absolute top-0 left-0 w-full p-6 text-center z-10 bg-gradient-to-b from-white/80 to-transparent">
-                <p class="text-sm font-bold text-theme-main tracking-widest mb-1">IDOL MODEL CREATOR</p>
-                <h1 class="text-2xl font-black text-theme-dark text-shadow-pink leading-tight">
-                    あなたのスマホから<br>アイドルデビューが始まる♡
-                </h1>
+    <header class="relative w-full overflow-hidden bg-pink-100 min-h-[100vh]">
+        <!-- 背景のカーテン画像 (bg-curtain.jpg) -->
+        <img src="bg-curtain.jpg" alt="背景" class="absolute inset-0 w-full h-full object-cover z-0" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffb6c1%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3Ebg-curtain.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+        
+        <!-- 全員必ず1P掲載!! のバッジ（右上） -->
+        <div class="absolute top-4 right-2 z-20 bg-[#d9f2f2] rounded-full w-[80px] h-[80px] flex items-center justify-center transform rotate-12 shadow-md text-teal-600 font-black flex-col leading-none border-2 border-white">
+            <span class="text-[10px]">全員必ず</span>
+            <span class="text-xs"><span class="text-xl">1P</span>掲載!!</span>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center pt-16 pb-12 px-4 h-full justify-center">
+            <!-- 上部テキスト -->
+            <h1 class="text-white font-bold text-[26px] text-center leading-relaxed mb-6 text-shadow-strong">
+                自撮り一枚で雑誌の<br>アイドルデビュー？
+            </h1>
+
+            <!-- 雑誌画像 (magazine-cover.jpg) -->
+            <div class="w-[75%] max-w-[320px] relative mb-8 shadow-2xl">
+                <!-- 雑誌のハイライト効果(光沢) -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent pointer-events-none z-10 mix-blend-overlay"></div>
+                <img src="magazine-cover.jpg" alt="もしも私がアイドルになったら 雑誌表紙" class="w-full h-auto object-cover border-[1px] border-gray-200" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22400%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23f3f4f6%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23999%22%20text-anchor%3D%22middle%22%3Emagazine-cover.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
             </div>
 
-            <!-- ロゴオーバーレイ (logo.png) -->
-            <div class="absolute bottom-10 left-0 w-full px-6 z-10">
-                <img src="logo.png" alt="もしも私がアイドルになったら" class="w-[80%] mx-auto" onerror="this.outerHTML='<h2 class=\'text-center text-4xl font-black text-white text-shadow-pink stroke-pink-500 drop-shadow-lg\'>もしも私が<br>アイドルに<br>なったら</h2>'">
+            <!-- 下部テキスト -->
+            <p class="text-white font-bold text-lg mb-6 text-shadow-strong">
+                あなたのアイドルとしての物語はどれ？
+            </p>
+
+            <!-- カテゴリバッジ 5つ -->
+            <div class="flex flex-wrap justify-center gap-2 max-w-[360px]">
+                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
+                    <span class="text-[11px] font-black leading-tight tracking-tighter">IDOL</span>
+                    <span class="text-[8px] font-bold">アイドル</span>
+                </div>
+                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
+                    <span class="text-[10px] font-black leading-tight tracking-tighter">MODEL</span>
+                    <span class="text-[8px] font-bold">モデル</span>
+                </div>
+                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
+                    <span class="text-[7px] font-black leading-tight tracking-tighter">INFLUENCER</span>
+                    <span class="text-[6px] font-bold transform scale-90">インフルエンサー</span>
+                </div>
+                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
+                    <span class="text-[8px] font-black leading-tight tracking-tighter text-center">COVER<br>GIRL</span>
+                    <span class="text-[6px] font-bold transform scale-90">表紙モデル</span>
+                </div>
+                <div class="bg-[#11b2b8] text-white rounded-full w-[54px] h-[54px] flex flex-col items-center justify-center shadow-md">
+                    <span class="text-[9px] font-black leading-tight tracking-tighter">CREATOR</span>
+                    <span class="text-[7px] font-bold transform scale-90">クリエイター</span>
+                </div>
             </div>
         </div>
     </header>

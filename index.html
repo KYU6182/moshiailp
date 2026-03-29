@@ -25,6 +25,7 @@
                             accent: '#88e0d0', // パステルミント(バッジ用)
                             text: '#6a4a55',   // テキスト色(赤茶系で柔らかく)
                             line: '#06C755',   // LINEグリーン
+                            concept: '#ff8cb3' // コンセプト背景色
                         }
                     },
                     fontFamily: {
@@ -42,11 +43,10 @@
     
     <style>
         body {
-            background-color: #fce4ec; /* 外側の背景もピンクに */
+            background-color: #fce4ec;
             color: #6a4a55;
             overflow-x: hidden;
         }
-        /* スマホビューラッパー */
         .lp-wrapper {
             max-width: 480px;
             margin: 0 auto;
@@ -58,107 +58,57 @@
             overflow: hidden;
         }
 
-        /* --- LARME風のテキストエフェクト --- */
+        /* --- LARME風テキスト --- */
         .text-larme-title {
             color: #ff6688;
-            text-shadow: 
-                -3px -3px 0 #fff,  
-                 3px -3px 0 #fff,
-                -3px  3px 0 #fff,
-                 3px  3px 0 #fff,
-                -4px  0   0 #fff,
-                 4px  0   0 #fff,
-                 0   -4px 0 #fff,
-                 0    4px 0 #fff,
-                 0 8px 15px rgba(255, 102, 136, 0.4);
+            text-shadow: -3px -3px 0 #fff, 3px -3px 0 #fff, -3px 3px 0 #fff, 3px 3px 0 #fff, 0 8px 15px rgba(255, 102, 136, 0.4);
             letter-spacing: 0.05em;
         }
         .text-larme-sub {
             color: #fff;
-            text-shadow: 
-                -2px -2px 0 #ff99b3,  
-                 2px -2px 0 #ff99b3,
-                -2px  2px 0 #ff99b3,
-                 2px  2px 0 #ff99b3,
-                 0 4px 8px rgba(255, 153, 179, 0.6);
+            text-shadow: -2px -2px 0 #ff99b3, 2px -2px 0 #ff99b3, -2px 2px 0 #ff99b3, 2px 2px 0 #ff99b3, 0 4px 8px rgba(255, 153, 179, 0.6);
         }
 
         /* --- アニメーション --- */
         @keyframes float-magazine {
-            0% { transform: translateY(0px) rotate(-2deg); }
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
             50% { transform: translateY(-15px) rotate(2deg); }
-            100% { transform: translateY(0px) rotate(-2deg); }
         }
-        .animate-float {
-            animation: float-magazine 5s ease-in-out infinite;
-        }
+        .animate-float { animation: float-magazine 5s ease-in-out infinite; }
 
         @keyframes pulse-glow {
             0%, 100% { transform: scale(1); opacity: 0.8; }
             50% { transform: scale(1.1); opacity: 1; filter: brightness(1.2); }
         }
-        .animate-glow {
-            animation: pulse-glow 2.5s infinite;
-        }
+        .animate-glow { animation: pulse-glow 2.5s infinite; }
 
         @keyframes shine {
-            10% { opacity: 1; top: -30%; left: -30%; transition-property: left, top; transition-duration: 0.7s, 0.7s; transition-timing-function: ease; }
+            10% { opacity: 1; top: -30%; left: -30%; transition-property: left, top; transition-duration: 0.7s; transition-timing-function: ease; }
             100% { opacity: 0; top: -30%; left: -30%; transition-property: left, top; }
         }
-        .btn-shine {
-            position: relative;
-            overflow: hidden;
-        }
+        .btn-shine { position: relative; overflow: hidden; }
         .btn-shine::after {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
-            opacity: 0;
-            transform: rotate(30deg);
-            background: rgba(255, 255, 255, 0.5);
-            background: linear-gradient(to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0.0) 100%);
+            content: ""; position: absolute; top: -50%; left: -60%; width: 20%; height: 200%; opacity: 0;
+            transform: rotate(30deg); background: linear-gradient(to right, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
             animation: shine 4s infinite;
         }
 
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
+            10%, 90% { opacity: 0.8; }
             100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
         }
-        .particle {
-            position: absolute;
-            z-index: 15;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
+        .particle { position: absolute; z-index: 15; pointer-events: none; animation: fall linear infinite; }
 
-        /* 横スワイプの指差しアニメーション */
         @keyframes swipe-hint {
             0%, 100% { transform: translateX(0); }
             50% { transform: translateX(-8px); }
         }
-        .animate-swipe {
-            animation: swipe-hint 1.5s infinite ease-in-out;
-        }
+        .animate-swipe { animation: swipe-hint 1.5s infinite ease-in-out; }
 
-        /* セクション見出しのリボン風装飾 */
-        .section-title-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        .section-title-wrapper::before,
-        .section-title-wrapper::after {
-            content: '♥';
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #ff99b3;
-            font-size: 1.2rem;
-            animation: pulse-glow 2s infinite;
+        .section-title-wrapper { position: relative; display: inline-block; }
+        .section-title-wrapper::before, .section-title-wrapper::after {
+            content: '♥'; position: absolute; top: 50%; transform: translateY(-50%); color: #ff99b3; font-size: 1.2rem; animation: pulse-glow 2s infinite;
         }
         .section-title-wrapper::before { left: -30px; }
         .section-title-wrapper::after { right: -30px; }
@@ -166,16 +116,9 @@
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
 
-        /* Swiper のドット（ページネーション）のカスタマイズ */
-        .swiper-pagination-bullet {
-            background-color: #ff99b3 !important;
-            opacity: 0.5;
-        }
-        .swiper-pagination-bullet-active {
-            background-color: #ff6688 !important;
-            opacity: 1;
-            transform: scale(1.2);
-        }
+        /* Swiper ドットのカスタマイズ */
+        .swiper-pagination-bullet { background-color: #ff99b3 !important; opacity: 0.5; }
+        .swiper-pagination-bullet-active { background-color: #ff6688 !important; opacity: 1; transform: scale(1.2); }
     </style>
 </head>
 <body class="antialiased">
@@ -188,9 +131,7 @@
     <div class="particle text-pink-300 text-lg" style="left: 70%; animation-duration: 11s; animation-delay: 1s;">♥</div>
     <div class="particle text-white text-3xl drop-shadow-md" style="left: 85%; animation-duration: 10s; animation-delay: 5s;">✦</div>
 
-    <header class="relative w-full overflow-hidden bg-pink-100 min-h-[100vh] flex flex-col items-center pb-24">
-        <img src="bg-curtain.jpg" alt="背景" class="absolute inset-0 w-full h-full object-cover z-0 opacity-90 mix-blend-multiply" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffccd5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22white%22%20text-anchor%3D%22middle%22%3Ebg-curtain.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-        
+    <header class="relative w-full overflow-hidden bg-pink-100 flex flex-col items-center pb-8 pt-10">
         <div class="absolute inset-0 bg-gradient-to-b from-white/40 via-transparent to-pink-100/80 z-0"></div>
 
         <div class="absolute top-6 right-3 z-20 bg-white rounded-full w-[85px] h-[85px] flex items-center justify-center transform rotate-12 shadow-girly text-theme-dark font-black flex-col leading-none border-[3px] border-theme-main border-dashed">
@@ -198,8 +139,8 @@
             <span class="text-xs mt-0.5"><span class="text-[22px] text-theme-dark">1P</span>掲載!!</span>
         </div>
 
-        <div class="relative z-10 flex flex-col items-center pt-16 px-4 w-full h-full flex-grow">
-            <div class="mb-8 relative text-center w-full z-20">
+        <div class="relative z-10 flex flex-col items-center px-4 w-full h-full flex-grow">
+            <div class="mb-6 relative text-center w-full z-20">
                 <span class="absolute -top-4 left-4 text-3xl animate-pulse text-white drop-shadow-md">✨</span>
                 <h1 class="font-black leading-tight flex flex-col items-center justify-center gap-1">
                     <span class="text-larme-sub text-[22px] tracking-widest transform -rotate-2">
@@ -210,54 +151,75 @@
                     </span>
                 </h1>
             </div>
-
-            <div class="w-[70%] max-w-[280px] relative mb-10 animate-float z-20">
+            
+            <div class="w-[65%] max-w-[260px] relative mb-6 animate-float z-20">
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/50 blur-2xl rounded-full z-0"></div>
                 <div class="relative z-10 p-2 bg-white/60 rounded-xl backdrop-blur-sm border border-white shadow-girly">
-                    <img src="magazine-cover.jpg" alt="雑誌表紙" class="w-full h-auto object-cover rounded-lg shadow-inner" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22400%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6688%22%20text-anchor%3D%22middle%22%3Emagazine-cover.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                    <img src="magazine-cover.jpg" alt="雑誌表紙" class="w-full h-auto object-cover rounded-lg shadow-inner" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22400%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                 </div>
                 <div class="absolute -bottom-4 -right-4 text-4xl animate-bounce drop-shadow-md" style="animation-duration: 2s;">🎀</div>
             </div>
-
-            <div class="relative z-20 mb-6 w-full text-center">
+            
+            <div class="relative z-20 w-full text-center">
                 <div class="bg-white/80 backdrop-blur-md rounded-full py-2 px-6 inline-block shadow-girly-sm border-2 border-white">
                     <p class="font-bold text-[16px] text-theme-dark tracking-wide">
                         あなたのアイドルとしての物語はどれ？
                     </p>
                 </div>
             </div>
-
-            <div class="flex flex-wrap justify-center gap-3 max-w-[360px] relative z-20">
-                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
-                    <span class="text-[13px] font-black leading-tight tracking-tighter drop-shadow-md">IDOL</span>
-                    <span class="text-[9px] font-bold drop-shadow-md mt-0.5">アイドル</span>
-                </div>
-                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
-                    <span class="text-[11px] font-black leading-tight tracking-tighter drop-shadow-md">MODEL</span>
-                    <span class="text-[9px] font-bold drop-shadow-md mt-0.5">モデル</span>
-                </div>
-                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
-                    <span class="text-[8px] font-black leading-tight tracking-tighter drop-shadow-md">INFLUENCER</span>
-                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md">インフルエンサー</span>
-                </div>
-                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
-                    <span class="text-[9px] font-black leading-tight tracking-tighter text-center drop-shadow-md">COVER<br>GIRL</span>
-                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md">表紙モデル</span>
-                </div>
-                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
-                    <span class="text-[10px] font-black leading-tight tracking-tighter drop-shadow-md">CREATOR</span>
-                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md mt-0.5">クリエイター</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 transform translate-y-[1px]">
-            <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[60px]">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.22,192.36,102.39Z" fill="#fff5f8"></path>
-            </svg>
         </div>
     </header>
 
+    <section class="py-12 bg-theme-concept relative z-20 pb-16">
+        <div class="max-w-[400px] mx-auto px-4 flex flex-col items-center">
+            
+            <div class="w-full relative mb-8">
+                <img src="concept-top.jpg" alt="スマホからアイドルデビュー" class="w-full h-auto drop-shadow-xl rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffb3c6%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22white%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%3Econcept-top.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                
+                <div class="absolute -bottom-8 left-0 right-0 flex flex-col items-center gap-2 z-10">
+                    <div class="bg-white rounded-full px-6 py-1.5 shadow-md border border-pink-100">
+                        <p class="text-theme-dark font-bold text-[15px] tracking-wide">あなたのスマホから</p>
+                    </div>
+                    <div class="bg-white rounded-full px-7 py-2.5 shadow-md border border-pink-100">
+                        <p class="text-theme-dark font-black text-[18px] tracking-wide">アイドルデビューが始まる♡</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full flex items-center justify-center gap-3 mt-12 mb-8 px-4 opacity-80">
+                <div class="flex-1 border-b-[2px] border-dotted border-white"></div>
+                <div class="text-white text-xl pb-1 animate-glow">♡</div>
+                <div class="flex-1 border-b-[2px] border-dotted border-white"></div>
+            </div>
+
+            <div class="text-white text-center space-y-8 font-bold leading-loose text-[15px] tracking-widest drop-shadow-sm">
+                <p>
+                    「もしも私がアイドルになったら。」は<br>
+                    <span class="text-lg font-black text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.1);">応募者全員、誌面デビューできる</span><br>
+                    参加型アイドルマガジンです。
+                </p>
+                <p>
+                    エントリーから誌面掲載まで<br>
+                    ぜんぶLINEで完結。<br>
+                    雑誌掲載までのステップが<br>
+                    最短5分でできちゃう♡
+                </p>
+                <p>
+                    自撮り1枚でデビューOK。<br>
+                    編集部の手でアイドルページに変身♡<br>
+                    あなただけの特集が、本当に雑誌になるよ。<br>
+                    もしアイは<br>
+                    <span class="text-lg font-black text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.1);">あなたが主役の、新しい雑誌です。</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="w-full overflow-hidden leading-none bg-theme-bg -mt-1 relative z-10">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-[40px]">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.22,192.36,102.39Z" fill="#ff8cb3"></path>
+        </svg>
+    </div>
 
     <section class="py-14 px-0 bg-theme-bg relative z-20 overflow-hidden">
         <div class="text-center mb-6">
@@ -279,7 +241,7 @@
                             自撮り1枚でもOK! 📸
                         </div>
                         <div class="rounded-2xl overflow-hidden border-2 border-pink-50 p-1 bg-white shadow-inner mb-4 mt-2">
-                            <img src="content-1.jpg" alt="プロフィールページ" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff99b3%22%20text-anchor%3D%22middle%22%3Econtent-1.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            <img src="content-1.jpg" alt="プロフィールページ" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-xl font-bold text-theme-dark mb-2 flex items-center">
@@ -297,7 +259,7 @@
                             あなたが主役！ 👑
                         </div>
                         <div class="rounded-2xl overflow-hidden border-2 border-teal-50 p-1 bg-white shadow-inner mb-4 mt-2">
-                            <img src="content-2.jpg" alt="好きな企画を選んでエントリー" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23e6f7f5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%2388e0d0%22%20text-anchor%3D%22middle%22%3Econtent-2.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                            <img src="content-2.jpg" alt="好きな企画でエントリー" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23e6f7f5%22%2F%3E%3C%2Fsvg%3E'">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-xl font-bold text-theme-dark mb-2 flex items-center">
@@ -329,19 +291,19 @@
             </div>
         </div>
 
-        <div class="space-y-8">
+        <div class="space-y-6 max-w-[360px] mx-auto">
             <div class="bg-white rounded-[32px] shadow-girly-sm overflow-hidden border-4 border-white relative group cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:shadow-girly hover:border-theme-main z-10 hover:z-20">
                 <div class="relative h-56 overflow-hidden bg-pink-50 p-1.5 rounded-t-[28px]">
                     <img src="benefit-1.jpg" alt="雑誌1ページ掲載" class="w-full h-full object-cover rounded-t-[24px] transition-transform duration-700 group-hover:scale-110" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                     <div class="absolute top-4 left-4 bg-theme-main text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-10 border-2 border-white">全員</div>
                 </div>
-                <div class="p-6 text-center bg-white relative">
-                    <h3 class="text-xl font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
-                        <span class="text-theme-main text-lg">✦</span> 雑誌1ページ掲載 <span class="text-theme-main text-lg">✦</span>
+                <div class="p-5 text-center bg-white relative">
+                    <h3 class="text-lg font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
+                        <span class="text-theme-main text-base">✦</span> 雑誌1ページ掲載 <span class="text-theme-main text-base">✦</span>
                     </h3>
                     <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div class="overflow-hidden">
-                            <p class="pt-4 text-sm text-gray-600 leading-relaxed font-medium">
+                            <p class="pt-3 text-sm text-gray-600 leading-relaxed font-medium">
                                 エントリーすれば必ず、あなたの1ページが雑誌に掲載。<br>世界にひとつのあなたのページが完成♡
                             </p>
                         </div>
@@ -361,13 +323,13 @@
                         <span>👑</span> グランプリ
                     </div>
                 </div>
-                <div class="p-6 text-center bg-white relative">
-                    <h3 class="text-xl font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
-                        <span class="text-[#ffaa00] text-lg">✦</span> 表紙 & 巻頭特集 <span class="text-[#ffaa00] text-lg">✦</span>
+                <div class="p-5 text-center bg-white relative">
+                    <h3 class="text-lg font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
+                        <span class="text-[#ffaa00] text-base">✦</span> 表紙 & 巻頭特集 <span class="text-[#ffaa00] text-base">✦</span>
                     </h3>
                     <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div class="overflow-hidden">
-                            <p class="pt-4 text-sm text-gray-600 leading-relaxed font-medium">
+                            <p class="pt-3 text-sm text-gray-600 leading-relaxed font-medium">
                                 雑誌の主役をひとりじめ♡<br>表紙モデル＋巻頭特集ページで、<br>１番輝くポジションを獲得。
                             </p>
                         </div>
@@ -387,13 +349,13 @@
                         <span>👑</span> グランプリ
                     </div>
                 </div>
-                <div class="p-6 text-center bg-white relative">
-                    <h3 class="text-xl font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
-                        <span class="text-[#ffaa00] text-lg">✦</span> レギュラーモデル就任 <span class="text-[#ffaa00] text-lg">✦</span>
+                <div class="p-5 text-center bg-white relative">
+                    <h3 class="text-lg font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
+                        <span class="text-[#ffaa00] text-base">✦</span> レギュラーモデル就任 <span class="text-[#ffaa00] text-base">✦</span>
                     </h3>
                     <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div class="overflow-hidden">
-                            <p class="pt-4 text-sm text-gray-600 leading-relaxed font-medium">
+                            <p class="pt-3 text-sm text-gray-600 leading-relaxed font-medium">
                                 憧れのレギュラーモデルを叶えるチャンス。<br>グランプリに選ばれると、<br>次号以降も誌面にレギュラー掲載。
                             </p>
                         </div>
@@ -411,13 +373,13 @@
                     <img src="benefit-4.jpg" alt="Off-Melty公式モデル就任" class="w-full h-full object-cover rounded-t-[24px] transition-transform duration-700 group-hover:scale-110" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23e6f7f5%22%2F%3E%3C%2Fsvg%3E'">
                     <div class="absolute top-4 left-4 bg-theme-accent text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-md z-10 border-2 border-white">特別賞</div>
                 </div>
-                <div class="p-6 text-center bg-white relative">
-                    <h3 class="text-xl font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
-                        <span class="text-theme-accent text-lg">✦</span> Off-Melty公式モデル <span class="text-theme-accent text-lg">✦</span>
+                <div class="p-5 text-center bg-white relative">
+                    <h3 class="text-lg font-bold text-theme-dark leading-tight flex justify-center items-center gap-2">
+                        <span class="text-theme-accent text-base">✦</span> Off-Melty公式モデル <span class="text-theme-accent text-base">✦</span>
                     </h3>
                     <div class="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-500 ease-in-out">
                         <div class="overflow-hidden">
-                            <p class="pt-4 text-sm text-gray-600 leading-relaxed font-medium">
+                            <p class="pt-3 text-sm text-gray-600 leading-relaxed font-medium">
                                 アパレルブランドの「off melty（オフメルティ）」公式モデルに♡<br>新作アイテムを無償提供など。
                             </p>
                         </div>
@@ -640,10 +602,10 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var swiper = new Swiper(".contentsSwiper", {
-            effect: "cards", // カードが重なってめくれるエフェクト
+            effect: "cards",
             grabCursor: true,
             cardsEffect: {
-                slideShadows: true, // カードの後ろに影をつけて立体感を出す
+                slideShadows: true,
             },
             pagination: {
                 el: ".swiper-pagination",

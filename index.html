@@ -30,6 +30,7 @@
                     },
                     fontFamily: {
                         sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                        serif: ['"Noto Serif JP"', 'serif'], // Entryのタイトル用
                     },
                     boxShadow: {
                         'girly': '0 10px 25px -5px rgba(255, 153, 179, 0.4)',
@@ -175,7 +176,6 @@
             
             <div class="w-full relative mb-8">
                 <img src="concept-top.jpg" alt="スマホからアイドルデビュー" class="w-full h-auto drop-shadow-xl rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22300%22%20viewBox%3D%220%200%20400%20300%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffb3c6%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22white%22%20font-size%3D%2214%22%20text-anchor%3D%22middle%22%3Econcept-top.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
-                
                 <div class="absolute -bottom-8 left-0 right-0 flex flex-col items-center gap-2 z-10">
                     <div class="bg-white rounded-full px-6 py-1.5 shadow-md border border-pink-100">
                         <p class="text-theme-dark font-bold text-[15px] tracking-wide">あなたのスマホから</p>
@@ -237,15 +237,15 @@
                 
                 <div class="swiper-slide">
                     <div class="bg-white rounded-[32px] p-6 shadow-girly-sm border-4 border-theme-light h-full flex flex-col relative">
-                        <div class="absolute -top-4 -left-2 bg-theme-main text-white text-xs font-bold px-4 py-1.5 rounded-full transform rotate-[-5deg] shadow-md border-2 border-white z-10">
+                        <div class="absolute -top-4 -left-2 bg-theme-main text-white text-xs font-bold px-4 py-1.5 rounded-full transform rotate-[-5deg] shadow-md border-2 border-white z-10 hover:z-20">
                             自撮り1枚でもOK! 📸
                         </div>
-                        <div class="rounded-2xl overflow-hidden border-2 border-pink-50 p-1 bg-white shadow-inner mb-4 mt-2">
-                            <img src="content-1.jpg" alt="プロフィールページ" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
+                        <div class="rounded-2xl overflow-hidden border-2 border-pink-50 p-1 bg-white shadow-inner mb-4 mt-2 hover:scale-105 transition-transform duration-300">
+                            <img src="content-1.jpg" alt="プロフィールページ" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff99b3%22%20text-anchor%3D%22middle%22%3Econtent-1.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-xl font-bold text-theme-dark mb-2 flex items-center">
-                                <span class="text-theme-main mr-1">✦</span> プロフィールページ
+                                <span class="text-theme-main mr-1 animate-glow">✦</span> プロフィールページ
                             </h3>
                             <p class="text-sm leading-relaxed text-gray-600 font-medium">編集部が魅力を引き出して完全プロデュース！あなたのページを制作し、必ず雑誌に掲載されます♡</p>
                         </div>
@@ -255,15 +255,15 @@
 
                 <div class="swiper-slide">
                     <div class="bg-white rounded-[32px] p-6 shadow-girly-sm border-4 border-theme-light h-full flex flex-col relative">
-                        <div class="absolute -top-4 -right-2 bg-theme-accent text-white text-xs font-bold px-4 py-1.5 rounded-full transform rotate-[5deg] shadow-md border-2 border-white z-10">
+                        <div class="absolute -top-4 -right-2 bg-theme-accent text-white text-xs font-bold px-4 py-1.5 rounded-full transform rotate-[5deg] shadow-md border-2 border-white z-10 hover:z-20">
                             あなたが主役！ 👑
                         </div>
-                        <div class="rounded-2xl overflow-hidden border-2 border-teal-50 p-1 bg-white shadow-inner mb-4 mt-2">
-                            <img src="content-2.jpg" alt="好きな企画でエントリー" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23e6f7f5%22%2F%3E%3C%2Fsvg%3E'">
+                        <div class="rounded-2xl overflow-hidden border-2 border-teal-50 p-1 bg-white shadow-inner mb-4 mt-2 hover:scale-105 transition-transform duration-300">
+                            <img src="content-2.jpg" alt="好きな企画を選んでエントリー" class="w-full h-44 object-cover rounded-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23e6f7f5%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%2388e0d0%22%20text-anchor%3D%22middle%22%3Econtent-2.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-xl font-bold text-theme-dark mb-2 flex items-center">
-                                <span class="text-theme-accent mr-1">✦</span> 好きな企画でエントリー
+                                <span class="text-theme-accent mr-1 animate-glow">✦</span> 好きな企画でエントリー
                             </h3>
                             <p class="text-sm leading-relaxed text-gray-600 font-medium">もしも私がアイドルだったら...。コンセプトに合わせた企画に参加して、あなただけの新しい物語をスタート。</p>
                         </div>
@@ -285,13 +285,13 @@
         <div class="text-center mb-10">
             <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Benefits</h2>
             <p class="mt-2 text-sm font-bold text-theme-main">デビューから活躍まで<br>あなたの夢を叶える特典✨</p>
-            <div class="mt-4 bg-white/70 backdrop-blur-sm py-1.5 px-4 rounded-full inline-flex items-center gap-2 shadow-sm border border-white">
+            <div class="mt-4 bg-white/70 backdrop-blur-sm py-1.5 px-4 rounded-full inline-flex items-center gap-2 shadow-sm border border-white hover:scale-105 transition-transform duration-300">
                 <span class="animate-bounce text-theme-dark text-lg leading-none">👇</span>
                 <span class="text-[11px] text-theme-dark font-bold">カードをタップして詳細をチェック！</span>
             </div>
         </div>
 
-        <div class="space-y-6 max-w-[360px] mx-auto">
+        <div class="space-y-8 max-w-[360px] mx-auto">
             <div class="bg-white rounded-[32px] shadow-girly-sm overflow-hidden border-4 border-white relative group cursor-pointer transition-all duration-500 hover:scale-[1.03] hover:shadow-girly hover:border-theme-main z-10 hover:z-20">
                 <div class="relative h-56 overflow-hidden bg-pink-50 p-1.5 rounded-t-[28px]">
                     <img src="benefit-1.jpg" alt="雑誌1ページ掲載" class="w-full h-full object-cover rounded-t-[24px] transition-transform duration-700 group-hover:scale-110" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
@@ -437,6 +437,48 @@
                 <p class="text-[11px] text-gray-600 leading-relaxed flex-1">
                     急な出費も安心！手数料を支払えば、貯まった報酬を<span class="font-bold text-theme-dark">最短翌日</span>に引き出せる早期振込機能を利用可能です。
                 </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-14 px-5 bg-theme-bg relative z-20">
+        <div class="text-center mb-8">
+            <h2 class="text-[42px] font-serif font-black text-gray-500 tracking-wider mb-1 leading-none">Entry</h2>
+            <p class="text-[15px] font-bold text-gray-500">エントリー概要</p>
+        </div>
+
+        <div class="max-w-[400px] mx-auto bg-white rounded-[40px] shadow-girly-sm pt-10 pb-8 px-6 relative">
+            <div class="grid grid-cols-2 gap-y-10 gap-x-4">
+                <div class="flex flex-col items-center text-center">
+                    <div class="text-5xl mb-3 drop-shadow-sm">👯‍♀️</div>
+                    <p class="text-[12px] font-bold text-theme-dark leading-tight">友達との参加OK</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="text-5xl mb-3 drop-shadow-sm">🌏</div>
+                    <p class="text-[12px] font-bold text-theme-dark leading-tight">全国どこからでも<br>参加可能</p>
+                </div>
+                <div class="flex flex-col items-center text-center relative">
+                    <div class="text-5xl mb-3 drop-shadow-sm relative">
+                        💖
+                        <span class="absolute inset-0 flex items-center justify-center text-white text-[12px] font-black pb-1">¥0</span>
+                    </div>
+                    <p class="text-[12px] font-bold text-theme-dark leading-tight mt-[-2px]">参加費無料</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="text-5xl mb-3 drop-shadow-sm">🔰</div>
+                    <p class="text-[12px] font-bold text-theme-dark leading-tight">初心者・未経験OK</p>
+                </div>
+                <div class="flex flex-col items-center text-center relative">
+                    <div class="text-5xl mb-3 drop-shadow-sm relative">
+                        📖
+                        <span class="absolute top-[18px] left-[5px] text-theme-dark text-[10px] font-black bg-white/90 px-1 rounded-sm shadow-sm">1P</span>
+                    </div>
+                    <p class="text-[11px] font-bold text-theme-dark leading-tight">エントリーすると<br>必ず1ページ掲載保証</p>
+                </div>
+                <div class="flex flex-col items-center text-center">
+                    <div class="text-5xl mb-3 drop-shadow-sm">👧</div>
+                    <p class="text-[12px] font-bold text-theme-dark leading-tight">15歳〜23歳まで</p>
+                </div>
             </div>
         </div>
     </section>

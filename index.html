@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700;900&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -30,7 +30,7 @@
                     },
                     fontFamily: {
                         sans: ['"Zen Maru Gothic"', 'sans-serif'],
-                        serif: ['"Noto Serif JP"', 'serif'], // Entryのタイトル用
+                        serif: ['"Noto Serif JP"', 'serif'], // Entry等のタイトル用
                     },
                     boxShadow: {
                         'girly': '0 10px 25px -5px rgba(255, 153, 179, 0.4)',
@@ -107,13 +107,6 @@
         }
         .animate-swipe { animation: swipe-hint 1.5s infinite ease-in-out; }
 
-        .section-title-wrapper { position: relative; display: inline-block; }
-        .section-title-wrapper::before, .section-title-wrapper::after {
-            content: '♥'; position: absolute; top: 50%; transform: translateY(-50%); color: #ff99b3; font-size: 1.2rem; animation: pulse-glow 2s infinite;
-        }
-        .section-title-wrapper::before { left: -30px; }
-        .section-title-wrapper::after { right: -30px; }
-
         details > summary { list-style: none; }
         details > summary::-webkit-details-marker { display: none; }
 
@@ -166,6 +159,29 @@
                     <p class="font-bold text-[16px] text-theme-dark tracking-wide">
                         あなたのアイドルとしての物語はどれ？
                     </p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 max-w-[360px] relative z-20 mt-6">
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[13px] font-black leading-tight tracking-tighter drop-shadow-md">IDOL</span>
+                    <span class="text-[9px] font-bold drop-shadow-md mt-0.5">アイドル</span>
+                </div>
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[11px] font-black leading-tight tracking-tighter drop-shadow-md">MODEL</span>
+                    <span class="text-[9px] font-bold drop-shadow-md mt-0.5">モデル</span>
+                </div>
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[8px] font-black leading-tight tracking-tighter drop-shadow-md">INFLUENCER</span>
+                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md">インフルエンサー</span>
+                </div>
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[9px] font-black leading-tight tracking-tighter text-center drop-shadow-md">COVER<br>GIRL</span>
+                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md">表紙モデル</span>
+                </div>
+                <div class="bg-gradient-to-br from-theme-accent to-[#5fc2b3] text-white rounded-full w-[60px] h-[60px] flex flex-col items-center justify-center shadow-badge border-2 border-white hover:scale-105 transition-transform">
+                    <span class="text-[10px] font-black leading-tight tracking-tighter drop-shadow-md">CREATOR</span>
+                    <span class="text-[7px] font-bold transform scale-90 drop-shadow-md mt-0.5">クリエイター</span>
                 </div>
             </div>
         </div>
@@ -223,8 +239,8 @@
 
     <section class="py-14 px-0 bg-theme-bg relative z-20 overflow-hidden">
         <div class="text-center mb-6">
-            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Contents</h2>
-            <p class="mt-2 text-sm font-bold text-theme-main">あなたが主役の誌面体験。</p>
+            <h2 class="text-[42px] font-serif font-black text-gray-600 tracking-wider mb-1 leading-none">Contents</h2>
+            <p class="text-[15px] font-bold text-gray-500">あなたが主役の誌面体験。</p>
             
             <div class="mt-4 bg-white/70 backdrop-blur-sm py-1.5 px-5 rounded-full inline-flex items-center gap-2 shadow-sm border border-white">
                 <span class="animate-swipe text-theme-dark text-lg leading-none">👈</span>
@@ -283,8 +299,9 @@
 
     <section class="py-14 px-5 bg-theme-light relative z-20">
         <div class="text-center mb-10">
-            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Benefits</h2>
-            <p class="mt-2 text-sm font-bold text-theme-main">デビューから活躍まで<br>あなたの夢を叶える特典✨</p>
+            <h2 class="text-[42px] font-serif font-black text-gray-600 tracking-wider mb-1 leading-none">Benefits</h2>
+            <p class="text-[15px] font-bold text-gray-500">デビューから活躍まで<br>あなたの夢を叶える特典✨</p>
+            
             <div class="mt-4 bg-white/70 backdrop-blur-sm py-1.5 px-4 rounded-full inline-flex items-center gap-2 shadow-sm border border-white hover:scale-105 transition-transform duration-300">
                 <span class="animate-bounce text-theme-dark text-lg leading-none">👇</span>
                 <span class="text-[11px] text-theme-dark font-bold">カードをタップして詳細をチェック！</span>
@@ -402,8 +419,8 @@
 
     <section class="py-14 px-5 bg-theme-bg relative z-20">
         <div class="text-center mb-10">
-            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Support</h2>
-            <p class="mt-2 text-sm font-bold text-theme-main">夢を叶えながら、しっかり稼げる！<br>充実のサポート&報酬システム♡</p>
+            <h2 class="text-[42px] font-serif font-black text-gray-600 tracking-wider mb-1 leading-none">Support</h2>
+            <p class="text-[15px] font-bold text-gray-500">夢を叶えながら、しっかり稼げる！<br>充実のサポート&報酬システム♡</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
@@ -443,7 +460,7 @@
 
     <section class="py-14 px-5 bg-theme-bg relative z-20">
         <div class="text-center mb-8">
-            <h2 class="text-[42px] font-serif font-black text-gray-500 tracking-wider mb-1 leading-none">Entry</h2>
+            <h2 class="text-[42px] font-serif font-black text-gray-600 tracking-wider mb-1 leading-none">Entry</h2>
             <p class="text-[15px] font-bold text-gray-500">エントリー概要</p>
         </div>
 
@@ -485,8 +502,8 @@
 
     <section class="py-14 px-6 bg-theme-bg">
         <div class="text-center mb-12">
-            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Step</h2>
-            <p class="mt-2 text-sm font-bold text-theme-main">エントリーから掲載まで、<br>すべてLINEで完結♡</p>
+            <h2 class="text-[42px] font-serif font-black text-gray-600 tracking-wider mb-1 leading-none">Step</h2>
+            <p class="text-[15px] font-bold text-gray-500">エントリーから掲載まで、<br>すべてLINEで完結♡</p>
         </div>
 
         <div class="relative border-l-[3px] border-dashed border-theme-main ml-6 space-y-10 pb-4">
@@ -563,8 +580,8 @@
 
     <section class="py-12 px-6 bg-white relative z-20">
         <div class="text-center mb-8">
-            <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Q&A</h2>
-            <p class="mt-2 text-sm font-bold text-theme-main">よくある質問</p>
+            <h2 class="text-[42px] font-serif font-black text-gray-600 tracking-wider mb-1 leading-none">Q&A</h2>
+            <p class="text-[15px] font-bold text-gray-500">よくある質問</p>
         </div>
 
         <div class="space-y-4">

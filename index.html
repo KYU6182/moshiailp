@@ -181,7 +181,6 @@
             
             <div class="mb-8 relative text-center w-full z-20">
                 <span class="absolute -top-4 left-4 text-3xl animate-pulse text-white drop-shadow-md">✨</span>
-                
                 <h1 class="font-black leading-tight flex flex-col items-center justify-center gap-1">
                     <span class="text-larme-sub text-[22px] tracking-widest transform -rotate-2">
                         自撮り一枚で雑誌の
@@ -194,11 +193,9 @@
 
             <div class="w-[70%] max-w-[280px] relative mb-10 animate-float z-20">
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/50 blur-2xl rounded-full z-0"></div>
-                
                 <div class="relative z-10 p-2 bg-white/60 rounded-xl backdrop-blur-sm border border-white shadow-girly">
                     <img src="magazine-cover.jpg" alt="雑誌表紙" class="w-full h-auto object-cover rounded-lg shadow-inner" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22300%22%20height%3D%22400%22%20viewBox%3D%220%200%20300%20400%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20fill%3D%22%23ff6688%22%20text-anchor%3D%22middle%22%3Emagazine-cover.jpg%3C%2Ftext%3E%3C%2Fsvg%3E'">
                 </div>
-                
                 <div class="absolute -bottom-4 -right-4 text-4xl animate-bounce drop-shadow-md" style="animation-duration: 2s;">🎀</div>
             </div>
 
@@ -294,48 +291,69 @@
         <div class="text-center mb-10">
             <h2 class="section-title-wrapper text-3xl font-black text-theme-dark tracking-widest uppercase">Benefits</h2>
             <p class="mt-2 text-sm font-bold text-theme-main">デビューから活躍まで<br>あなたの夢を叶える特典✨</p>
+            <p class="text-[10px] text-theme-dark mt-3 animate-pulse font-bold">👇 カードをタップして詳細をチェック！</p>
         </div>
 
         <div class="grid grid-cols-2 gap-4">
-            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col border-[3px] border-white hover:-translate-y-1 transition-transform">
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col border-[3px] border-white relative group cursor-pointer">
+                <div class="absolute inset-0 bg-theme-main/95 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-30">
+                    <p class="text-[11px] text-white font-bold leading-relaxed drop-shadow-sm">
+                        エントリーすれば必ず、<br>あなたの1ページが<br>雑誌に掲載。<br>世界にひとつのあなたの<br>ページが完成♡
+                    </p>
+                </div>
                 <div class="p-1">
                     <img src="benefit-1.jpg" alt="雑誌1ページ掲載" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                 </div>
-                <div class="p-3 text-center flex-1 flex flex-col justify-center items-center bg-white">
+                <div class="p-3 text-center flex-1 flex flex-col justify-center items-center bg-white relative z-10">
                     <span class="text-[10px] bg-theme-main text-white font-bold rounded-full px-3 py-0.5 inline-block w-max mb-1">全員</span>
                     <h3 class="text-sm font-bold text-theme-dark leading-tight">雑誌1ページ掲載</h3>
                 </div>
             </div>
             
-            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col relative border-[3px] border-[#ffd700] hover:-translate-y-1 transition-transform">
-                <div class="absolute -top-1 -right-1 bg-gradient-to-r from-[#ffd700] to-[#ffaa00] text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl rounded-tr-xl z-10 shadow-sm flex items-center gap-1">
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col relative border-[3px] border-[#ffd700] group cursor-pointer">
+                <div class="absolute inset-0 bg-[#ffaa00]/95 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-30">
+                    <p class="text-[11px] text-white font-bold leading-relaxed drop-shadow-sm">
+                        雑誌の主役をひとりじめ♡<br><br>表紙モデル＋<br>巻頭特集ページで、<br>１番輝くポジションを<br>獲得。
+                    </p>
+                </div>
+                <div class="absolute -top-1 -right-1 bg-gradient-to-r from-[#ffd700] to-[#ffaa00] text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl rounded-tr-xl z-20 shadow-sm flex items-center gap-1">
                     <span>👑</span> グランプリ
                 </div>
                 <div class="p-1">
                     <img src="benefit-2.jpg" alt="表紙&巻頭" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                 </div>
-                <div class="p-3 text-center flex-1 flex flex-col justify-center bg-white">
+                <div class="p-3 text-center flex-1 flex flex-col justify-center bg-white relative z-10">
                     <h3 class="text-sm font-bold text-theme-dark leading-tight">表紙 & 巻頭特集</h3>
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col relative border-[3px] border-[#ffd700] hover:-translate-y-1 transition-transform">
-                <div class="absolute -top-1 -right-1 bg-gradient-to-r from-[#ffd700] to-[#ffaa00] text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl rounded-tr-xl z-10 shadow-sm flex items-center gap-1">
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col relative border-[3px] border-[#ffd700] group cursor-pointer">
+                <div class="absolute inset-0 bg-[#ffaa00]/95 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-30">
+                    <p class="text-[11px] text-white font-bold leading-relaxed drop-shadow-sm">
+                        憧れのレギュラーモデルを<br>叶えるチャンス。<br><br>グランプリに選ばれると、<br>次号以降も誌面に<br>レギュラー掲載。
+                    </p>
+                </div>
+                <div class="absolute -top-1 -right-1 bg-gradient-to-r from-[#ffd700] to-[#ffaa00] text-white text-[10px] font-bold px-3 py-1.5 rounded-bl-xl rounded-tr-xl z-20 shadow-sm flex items-center gap-1">
                     <span>👑</span> グランプリ
                 </div>
                 <div class="p-1">
                     <img src="benefit-3.jpg" alt="レギュラーモデル" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                 </div>
-                <div class="p-3 text-center flex-1 flex flex-col justify-center bg-white">
+                <div class="p-3 text-center flex-1 flex flex-col justify-center bg-white relative z-10">
                     <h3 class="text-sm font-bold text-theme-dark leading-tight">レギュラーモデル<br>就任</h3>
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col border-[3px] border-white hover:-translate-y-1 transition-transform">
+            <div class="bg-white rounded-2xl shadow-girly-sm overflow-hidden flex flex-col border-[3px] border-white relative group cursor-pointer">
+                <div class="absolute inset-0 bg-theme-accent/95 backdrop-blur-sm flex flex-col items-center justify-center p-3 text-center opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-30">
+                    <p class="text-[11px] text-white font-bold leading-relaxed drop-shadow-sm">
+                        アパレルブランドの<br>「off melty<br>（オフメルティ）」<br>公式モデルに♡<br><br>新作アイテムを<br>無償提供など
+                    </p>
+                </div>
                 <div class="p-1">
                     <img src="benefit-4.jpg" alt="アパレルの公式モデル" class="w-full h-28 object-cover rounded-t-xl" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20fill%3D%22%23ffebf0%22%2F%3E%3C%2Fsvg%3E'">
                 </div>
-                <div class="p-3 text-center flex-1 flex flex-col justify-center items-center bg-white">
+                <div class="p-3 text-center flex-1 flex flex-col justify-center items-center bg-white relative z-10">
                     <span class="text-[10px] bg-theme-accent text-white font-bold rounded-full px-3 py-0.5 inline-block w-max mb-1">特別賞</span>
                     <h3 class="text-[13px] font-bold text-theme-dark leading-tight">Off-Melty<br>公式モデル就任</h3>
                 </div>
@@ -360,7 +378,7 @@
                 <div class="text-4xl mb-3 drop-shadow-sm">💖</div>
                 <h3 class="text-sm font-bold text-theme-dark leading-tight mb-2">有料ギフトで<br>活動支援金ゲット！</h3>
                 <p class="text-[11px] text-gray-600 leading-relaxed flex-1">
-                    ファンからの有料ギフトは、ランキングだけでなく、あなたの<span class="font-bold text-theme-dark">活動支援金</span>として還元されます。業界トップクラスの還元率で、あなたの活動をしっかりサポート！
+                    ファンからの有料ギフトは、ランキングだけでなく、あなたの<span class="font-bold text-theme-dark">活動支援金</span>として還元されます。
                 </p>
             </div>
 
@@ -368,7 +386,7 @@
                 <div class="text-4xl mb-3 drop-shadow-sm">👗</div>
                 <h3 class="text-sm font-bold text-theme-dark leading-tight mb-2">Off-Meltyの<br>衣装をプレゼント！</h3>
                 <p class="text-[11px] text-gray-600 leading-relaxed flex-1">
-                    特定のギフト（例: 衣装提供）をファンから貰うと、<span class="font-bold text-theme-dark">実物の衣装</span>があなたの自宅に届きます♡ 貰った衣装で配信やSNS投稿もできちゃいます！
+                    ファンから衣装提供されると、<span class="font-bold text-theme-dark">実物の服</span>が自宅に届きます♡ 貰った衣装で配信やSNS投稿もできちゃいます！
                 </p>
             </div>
 
@@ -384,7 +402,7 @@
                 <div class="text-4xl mb-3 drop-shadow-sm">💸</div>
                 <h3 class="text-sm font-bold text-theme-dark leading-tight mb-2">報酬は<br>最短翌日引き出し！</h3>
                 <p class="text-[11px] text-gray-600 leading-relaxed flex-1">
-                    急な出費も安心！一定の手数料を支払えば、貯まった報酬を<span class="font-bold text-theme-dark">最短翌日</span>に引き出せる早期振込機能を利用可能です。
+                    急な出費も安心！手数料を支払えば、貯まった報酬を<span class="font-bold text-theme-dark">最短翌日</span>に引き出せる早期振込機能を利用可能です。
                 </p>
             </div>
         </div>
@@ -484,6 +502,7 @@
                     A. 参加費や登録料などは一切かかりません。無料でエントリー可能です。（※通信費はご負担ください）
                 </p>
             </details>
+            
             <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
                 <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
                     <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>どんな人が応募できますか？</span>
@@ -493,6 +512,7 @@
                     A. アイドルやモデルに興味がある方なら、経験問わずどなたでもご応募いただけます。
                 </p>
             </details>
+            
             <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
                 <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
                     <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>地方在住でどうやって出演できるの？</span>
@@ -502,6 +522,7 @@
                     A. 基本的にオンライン（LINE）でのやり取りと、ご自身で撮影いただいた写真データで誌面を作成するため、全国どこからでもご参加可能です。
                 </p>
             </details>
+
             <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
                 <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
                     <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>ギフトの報酬（活動支援金）はどうやって受け取りますか？</span>
@@ -511,6 +532,7 @@
                     A. 貯まった報酬は、専用ダッシュボードから振込申請を行うことで、銀行口座へお振り込みします。通常は翌月払いですが、早期振込機能（最短翌日払い）もご利用可能です。
                 </p>
             </details>
+
             <details class="bg-theme-bg rounded-2xl shadow-sm border border-pink-100 p-5 group cursor-pointer transition-all hover:bg-theme-light">
                 <summary class="font-bold flex justify-between items-center text-theme-dark outline-none">
                     <span class="flex items-center"><span class="text-theme-main mr-2">Q.</span>無料票での応援は、報酬にならないのですか？</span>
